@@ -39,7 +39,8 @@ function App() {
     ""
   );
 
-  const refreshTime = APP_CONSTANTS.REACT_APP_REFRESH_TIMER * 1000;
+  const refreshTime =
+    Number(process.env.REACT_APP_REACT_APP_REFRESH_TIMER) * 1000;
 
   const [torusPlugin, setTorusPlugin] =
     useState<TorusWalletConnectorPlugin | null>(null);
