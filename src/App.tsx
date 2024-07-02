@@ -16,7 +16,7 @@ import "./App.css";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-const clientId = APP_CONSTANTS.CLIENT_ID; // get from https://dashboard.web3auth.io
+const clientId = process.env.REACT_APP_CLIENT_ID; // get from https://dashboard.web3auth.io
 
 function App() {
   const [web3auth, setWeb3auth] = useState<Web3AuthCore | null>(null);
@@ -53,10 +53,8 @@ function App() {
 
           chainConfig: {
             chainNamespace: CHAIN_NAMESPACES.EIP155,
-
-            chainId: "0x13881",
-
-            rpcTarget: APP_CONSTANTS.RPC_TARGET, // This is the mainnet RPC we have added, please pass on your own endpoint while creating an app
+            chainId: "0x13882",
+            rpcTarget: process.env.REACT_APP_RPC_TARGET, // This is the mainnet RPC we have added, please pass on your own endpoint while creating an app
           },
         });
 
@@ -77,22 +75,25 @@ function App() {
 
               defaultLanguage: "en",
 
-              dark: true, // whether to enable dark mode. defaultValue: false
+              dark: true,
+              // whether to enable dark mode. defaultValue: false
             },
 
             loginConfig: {
               // Add login configs corresponding to the providers on modal
-
               // Twitter login
 
               jwt: {
                 name: "Custom Auth Login",
 
-                verifier: APP_CONSTANTS.ADAPTER_TWITTER_CLIENT_VERIFIER, // Please create a verifier on the developer dashboard and pass the name here
+                verifier: process.env.REACT_APP_ADAPTER_TWITTER_CLIENT_VERIFIER,
+                // Please create a verifier on the developer dashboard and pass the name here
 
-                typeOfLogin: "twitter", // Pass on the login provider of the verifier you've created
+                typeOfLogin: "twitter",
+                // Pass on the login provider of the verifier you've created
 
-                clientId: APP_CONSTANTS.ADAPTER_TWITTER_CLIENT_ID, // Pass on the clientId of the login provider here - Please note this differs from the Web3Auth ClientID. This is the JWT Client ID
+                clientId: process.env.REACT_APP_ADAPTER_TWITTER_CLIENT_ID,
+                // Pass on the clientId of the login provider here - Please note this differs from the Web3Auth ClientID. This is the JWT Client ID
               },
 
               // Add other login providers here
